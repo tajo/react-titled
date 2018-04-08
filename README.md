@@ -1,5 +1,5 @@
-React-portal
-============
+# React-titled
+
 [![npm version](https://img.shields.io/npm/v/react-titled.svg?style=flat-square)](https://www.npmjs.com/package/react-titled)
 [![npm downloads](https://img.shields.io/npm/dm/react-titled.svg?style=flat-square)](https://www.npmjs.com/package/react-titled)
 [![Build Status](https://travis-ci.org/tajo/react-titled.svg?branch=master)](https://travis-ci.org/tajo/react-titled)
@@ -8,11 +8,11 @@ React-portal
 
 ## Features
 
-- **requires React v16.3+ and its new context API**
-- **supports nesting, similar to react-router**
-- updates document.title only when all react-titled instances are reconciled 
-- flexible, it lets you to specify how different levels should be concatenated
-- **no dependencies**, ~100 lines of code
+* **requires React v16.3+ and its new context API**
+* **supports nesting, similar to react-router**
+* updates document.title only when all react-titled instances are reconciled
+* flexible, it lets you to specify how different levels should be concatenated
+* **no dependencies**, ~100 lines of code
 
 ## Installation
 
@@ -24,13 +24,13 @@ yarn add react react-dom react-titled
 
 ### Basic
 
-```jsx 
+```jsx
 import { Titled } from 'react-titled';
 
 <Titled title={() => 'Example.com'}>
   <h1>Welcome!</h1>
   <Titled title={title => `Homepage | ${title}`} />
-</Titled>
+</Titled>;
 ```
 
 outputs
@@ -41,12 +41,12 @@ Homepage | Example.com
 
 ### The deepest one wins
 
-```jsx 
+```jsx
 import { Titled } from 'react-titled';
 
 <Titled title={() => 'Example.com'}>
   <Titled title={() => 'Homepage'} />
-</Titled>
+</Titled>;
 ```
 
 outputs
@@ -57,13 +57,13 @@ Homepage
 
 ### Subscribe to changes
 
-```jsx 
+```jsx
 import { Titled } from 'react-titled';
 
 <Titled title={() => 'Example.com'} onChange={title => console.log(title)}>
   <h1>Welcome!</h1>
   <Titled title={title => `Homepage | ${title}`} />
-</Titled>
+</Titled>;
 ```
 
 ## Run Examples
