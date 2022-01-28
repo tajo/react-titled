@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Titled from '../src/Titled';
+import { Titled } from '../src/Titled';
 
 export default class App extends React.Component {
   constructor(props) {

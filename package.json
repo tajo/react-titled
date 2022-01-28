@@ -20,14 +20,14 @@
   "license": "MIT",
   "scripts": {
     "build": "npm run clean && npm run build-es && npm run build-cjs",
-    "build-es": "babel ./src --out-dir ./es",
-    "build-cjs": "BABEL_ENV=commonjs babel ./src --out-dir ./lib",
-    "build:examples": "cross-env webpack",
+    "build-es": "tsc --module es2015 --target es2015 --outDir ./es -p tsconfig.json",
+    "build-cjs": "tsc --module commonjs --target es5 --outDir ./lib -p tsconfig.json",
+    "build:examples": "cross-env vite build",
     "clean": "rimraf es lib build",
     "prepublish": "cross-env NODE_ENV=production npm run build",
-    "lint": "eslint webpack.config.js src/**/*.js",
-    "format": "prettier --write \"**/*.js\"",
-    "test": "cross-env BABEL_ENV=commonjs jest --no-cache",
+    "lint": "eslint vite.config.js src examples --ext ts,tsx,js",
+    "format": "prettier --write \"**/*.js\" \"**/*{.ts,.tsx}\"",
+    "test": "cross-env vitest",
     "react": "enzyme-adapter-react-install 16"
   },
   "tags": [
@@ -42,31 +42,25 @@
     "react-title",
     "nested"
   ],
-  "dependencies": {
-    "prop-types": "^15.5.8"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "babel-cli": "^6.8.0",
-    "babel-core": "^6.8.0",
-    "babel-eslint": "^8.0.1",
-    "babel-jest": "^22.4.3",
-    "babel-loader": "^7.1.1",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.3.13",
+    "@testing-library/react": "^12.1.2",
+    "@types/react": "^17.0.38",
+    "@typescript-eslint/parser": "^5.10.1",
+    "@vitejs/plugin-react": "^1.1.4",
     "cross-env": "^5.0.1",
     "eslint": "^4.3.0",
     "eslint-plugin-prettier": "^2.1.2",
-    "jest": "^22.4.3",
+    "jsdom": "^19.0.0",
     "prettier": "^1.5.3",
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0",
-    "react-test-renderer": "^16.3.1",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
     "rimraf": "^2.5.0",
-    "webpack": "^4.5.0",
-    "webpack-cli": "^2.0.14"
+    "typescript": "^4.5.5",
+    "vite": "^2.7.13",
+    "vitest": "^0.2.5"
   },
   "peerDependencies": {
-    "react": "^16.3.0-0 || ^17.0.0-0"
+    "react": "^16.8.0-0 || ^17.0.0-0"
   }
 }
