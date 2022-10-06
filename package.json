@@ -1,6 +1,6 @@
 {
   "name": "react-titled",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "To set document.title with ease. Nested. Flexible.",
   "main": "lib/index.js",
   "module": "es/index.js",
