@@ -20,8 +20,8 @@
   "license": "MIT",
   "scripts": {
     "build": "npm run clean && npm run build-es && npm run build-cjs",
-    "build-es": "tsc --module es2015 --target es2015 --outDir ./es -p tsconfig.json",
-    "build-cjs": "tsc --module commonjs --target es5 --outDir ./lib -p tsconfig.json",
+    "build-es": "tsc --noEmit false --module es2015 --target es2015 --outDir ./es -p tsconfig.json",
+    "build-cjs": "tsc --noEmit false --module commonjs --target es5 --outDir ./lib -p tsconfig.json",
     "build:examples": "cross-env vite build",
     "clean": "rimraf es lib build",
     "prepublish": "cross-env NODE_ENV=production npm run build",
@@ -61,6 +61,6 @@
     "vitest": "^0.2.5"
   },
   "peerDependencies": {
-    "react": "^16.8.0-0 || ^17.0.0-0"
+    "react": "^16.8.0-0 || ^17.0.0-0 || ^18.0.0"
   }
 }
