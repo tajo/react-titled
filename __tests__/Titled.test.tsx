@@ -18,6 +18,16 @@ test('should output single title', () => {
   expect(handleChange.mock.calls[0][0]).toBe('Foo');
 });
 
+test('should override change handler', () => {
+  let titleToSet = '';
+  render(
+    <Titled title={() => 'Foo'} onChange={title => (titleToSet = title)}>
+      Child
+    </Titled>
+  );
+  expect(titleToSet).toBe('Foo');
+});
+
 test('should output nested title', () => {
   const handleChange = vi.fn();
   render(
