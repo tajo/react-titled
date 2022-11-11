@@ -27,7 +27,7 @@ yarn add react react-dom react-titled
 ```jsx
 import { Titled } from 'react-titled';
 
-<Titled title={() => 'Example.com'}>
+<Titled title={'Example.com'}>
   <h1>Welcome!</h1>
   <Titled title={title => `Homepage | ${title}`} />
 </Titled>;
@@ -55,12 +55,17 @@ outputs
 Homepage
 ```
 
-### Subscribe to changes
+### Custom title change handler
 
-```jsx
+```tsx
 import { Titled } from 'react-titled';
 
-<Titled title={() => 'Example.com'} onChange={title => console.log(title)}>
+<Titled title={() => 'Example.com'} onChange={title => {
+  if (document.title !== title) {
+    document.title = title;
+    console.log("Updated title", title);
+  }
+}}>
   <h1>Welcome!</h1>
   <Titled title={title => `Homepage | ${title}`} />
 </Titled>;
