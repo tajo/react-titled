@@ -3,10 +3,11 @@ import { TitledContext } from './TitledContext';
 import { TitledProvider } from './TitledProvider';
 
 type Props = React.PropsWithChildren<{
-  title: string | (currentTitle: string) => string;
+  title: string | ((currentTitle: string) => string);
+  onChange?: (title: string) => void;
 }>;
 
-export const Titled = ({ title, ...otherProps}: Props) => {
+export const Titled = ({ title, ...otherProps }: Props) => {
   return (
     <TitledContext.Consumer>
       {value => (
