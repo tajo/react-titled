@@ -1,15 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Titled } from '../src/Titled';
+import ReactDOM from 'react-dom';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inputValue: 'Middle',
-      showLeaf: true
-    };
-  }
+interface AppState {
+  inputValue: string;
+  showLeaf: boolean;
+}
+export default class App extends React.Component<{}, AppState> {
+  state = {
+    inputValue: 'Middle',
+    showLeaf: true
+  };
 
   toggleButton = () =>
     this.setState(prevState => ({ showLeaf: !prevState.showLeaf }));
@@ -44,4 +45,5 @@ export default class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
