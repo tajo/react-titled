@@ -11,7 +11,11 @@ type Props = React.PropsWithChildren<{
 
 export function useTitledValues({
   title,
-  onChange,
+  onChange = title => {
+    if (document?.title !== title) {
+      document.title = title;
+    }
+  },
   updateParent,
   resetHeight
 }: Props) {
@@ -22,9 +26,7 @@ export function useTitledValues({
       (titleStr, titleFn) => titleFn(titleStr),
       ''
     );
-    if (document?.title !== finalTitleStr) {
-      document.title = finalTitleStr;
-    }
+
     onChange?.(finalTitleStr);
   }
 
