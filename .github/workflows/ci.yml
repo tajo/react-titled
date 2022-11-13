@@ -36,7 +36,7 @@ jobs:
           - ^18.0.0
           - latest
     runs-on: ubuntu-latest
-    name: Testing all supported major version ${{ matrix.version }}
+    name: react@${{ matrix.version }}
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
