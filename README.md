@@ -27,7 +27,7 @@ yarn add react react-dom react-titled
 ```jsx
 import { Titled } from 'react-titled';
 
-<Titled title={() => 'Example.com'}>
+<Titled title={'Example.com'}>
   <h1>Welcome!</h1>
   <Titled title={title => `Homepage | ${title}`} />
 </Titled>;
