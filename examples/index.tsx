@@ -1,6 +1,6 @@
 import React from 'react';
 import { Titled } from '../src/Titled';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
 interface AppState {
   inputValue: string;
