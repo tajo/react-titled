@@ -36,10 +36,10 @@ jobs:
           - ^18.0.0
           - latest
     runs-on: ubuntu-latest
-    name: react@${{ matrix.version }}
+    name: react@${{ matrix.react-version }}
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
     - run: yarn install --frozen-lockfile
-    - run: yarn add --dev react@${{ matrix.version }} react-dom@${{ matrix.version }}
+    - run: yarn add --dev react@${{ matrix.react-version }} react-dom@${{ matrix.react-version }}
     - run: yarn test
