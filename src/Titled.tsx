@@ -3,15 +3,17 @@ import { TitledContext } from './TitledContext';
 import { TitledProvider } from './TitledProvider';
 
 type Props = React.PropsWithChildren<{
-  title: (currentTitle: string) => string;
+  title: string | ((currentTitle: string) => string);
+  onChange?: (title: string) => void;
 }>;
 
-export const Titled = (props: Props) => {
+export const Titled = ({ title, ...otherProps }: Props) => {
   return (
     <TitledContext.Consumer>
       {value => (
         <TitledProvider
-          {...props}
+          title={typeof title === 'string' ? () => title : title}
+          {...otherProps}
           resetHeight={value?.resetHeight}
           updateParent={value?.updateParent}
         />
