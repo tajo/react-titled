@@ -9,8 +9,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "alwaysStrict": true,
-    "noEmit": true,
+    "noEmit": true
   },
   "include": ["src/index.ts"]
 }
