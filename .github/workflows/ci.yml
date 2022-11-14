@@ -1,0 +1,46 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    name: Linter check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+    - run: yarn install --frozen-lockfile
+    - run: yarn lint
+    
+  build:
+    name: Build check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+    - run: yarn install --frozen-lockfile
+    - run: yarn build
+    - run: yarn build:examples
+
+  test:
+    strategy:
+      matrix:
+        react-version: 
+          - 16.8.0
+          - ^16.8.0
+          - ^17.0.0
+          - ^18.0.0
+          - latest
+    runs-on: ubuntu-latest
+    name: react@${{ matrix.react-version }}
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+    - run: yarn install --frozen-lockfile
+    - run: yarn add --dev react@${{ matrix.react-version }} react-dom@${{ matrix.react-version }}
+    - run: yarn test
