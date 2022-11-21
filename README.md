@@ -2,15 +2,15 @@
 
 [![npm version](https://img.shields.io/npm/v/react-titled.svg?style=flat-square)](https://www.npmjs.com/package/react-titled)
 [![npm downloads](https://img.shields.io/npm/dm/react-titled.svg?style=flat-square)](https://www.npmjs.com/package/react-titled)
-[![Build Status](https://travis-ci.org/tajo/react-titled.svg?branch=master)](https://travis-ci.org/tajo/react-titled)
+[![Build Status](https://github.com/tajo/react-titled/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/tajo/react-titled/actions/workflows/ci.yml)
 
 > To fully control document.title in your React app.
 
 ## Features
 
-* **requires React v16.3+ and its new context API**
+* **requires React v16.8+**
 * **supports nesting, similar to react-router**
-* updates document.title only when all react-titled instances are reconciled
+* updates `document.title` only when all react-titled instances are reconciled
 * flexible, it lets you to specify how different levels should be concatenated
 * **no dependencies**, ~100 lines of code
 
