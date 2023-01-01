@@ -13,7 +13,7 @@ export default class App extends React.Component<{}, AppState> {
   };
 
   toggleButton = () =>
-    this.setState(prevState => ({ showLeaf: !prevState.showLeaf }));
+    this.setState((prevState) => ({ showLeaf: !prevState.showLeaf }));
 
   render() {
     const { inputValue, showLeaf } = this.state;
@@ -23,18 +23,18 @@ export default class App extends React.Component<{}, AppState> {
         <input
           type="text"
           value={inputValue}
-          onChange={e => this.setState({ inputValue: e.target.value })}
+          onChange={(e) => this.setState({ inputValue: e.target.value })}
         />
         <button onClick={this.toggleButton}>Toggle Leaf</button>
         <Titled
           title={() => 'Example.com'}
-          onChange={title => console.log(title)}
+          onChange={(title) => console.log(title)}
         >
           <h1>Example.com</h1>
-          <Titled title={title => `${inputValue} | ${title}`}>
+          <Titled title={(title) => `${inputValue} | ${title}`}>
             <h2>{inputValue}</h2>
             {showLeaf && (
-              <Titled title={title => `Leaf | ${title}`}>
+              <Titled title={(title) => `Leaf | ${title}`}>
                 <h3>Leaf</h3>
               </Titled>
             )}
