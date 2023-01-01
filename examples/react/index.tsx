@@ -1,5 +1,5 @@
 import React from 'react';
-import { Titled } from '../src/Titled';
+import { Titled } from '../../src/Titled';
 import ReactDOM from 'react-dom/client';
 
 interface AppState {
@@ -45,5 +45,8 @@ export default class App extends React.Component<{}, AppState> {
   }
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+const rootEl = document.getElementById('root');
+if (rootEl) {
+  const root = ReactDOM.createRoot(rootEl);
+  root.render(<App />);
+}
