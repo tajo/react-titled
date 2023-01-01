@@ -57,7 +57,7 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn add --dev react@${{ matrix.react-version }} react-dom@${{ matrix.react-version }} @testing-library/react@12
         if: matrix.react-version != 'latest'
-      - run: yarn test --config vite.config-example.ts
+      - run: yarn test
         if: matrix.react-version == 'latest'
-      - run: yarn test --config vite.config-example-legacy.ts
+      - run: yarn test-legacy
         if: matrix.react-version == '16.8.0'
