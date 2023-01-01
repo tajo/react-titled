@@ -2,9 +2,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ['master']
   pull_request:
-    branches: [ "master" ]
+    branches: ['master']
   workflow_dispatch:
 
 jobs:
@@ -12,35 +12,52 @@ jobs:
     name: Linter check
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-    - run: yarn install --frozen-lockfile
-    - run: yarn lint
-    
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint
+
   build:
     name: Build check
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-    - run: yarn install --frozen-lockfile
-    - run: yarn build
-    - run: yarn build:examples
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+
+  examples:
+    strategy:
+      matrix:
+        react-version:
+          - 16.8.0
+          - latest
+    name: Build example with react@${{ matrix.react-version }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: yarn install --frozen-lockfile
+      - run: yarn build:example
+        if: matrix.react-version == 'latest'
+      - run: yarn build:example:legacy
+        if: matrix.react-version == '16.8.0'
 
   test:
     strategy:
       matrix:
-        react-version: 
+        react-version:
           - 16.8.0
-          - ^16.8.0
-          - ^17.0.0
-          - ^18.0.0
           - latest
     runs-on: ubuntu-latest
-    name: react@${{ matrix.react-version }}
+    name: Test with react@${{ matrix.react-version }}
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-    - run: yarn install --frozen-lockfile
-    - run: yarn add --dev react@${{ matrix.react-version }} react-dom@${{ matrix.react-version }}
-    - run: yarn test
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: yarn install --frozen-lockfile
+      - run: yarn add --dev react@${{ matrix.react-version }} react-dom@${{ matrix.react-version }} @testing-library/react@12
+        if: matrix.react-version != 'latest'
+      - run: yarn test --config vite.config-example.ts
+        if: matrix.react-version == 'latest'
+      - run: yarn test --config vite.config-example-legacy.ts
+        if: matrix.react-version == '16.8.0'
