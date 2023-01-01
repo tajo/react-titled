@@ -10,7 +10,7 @@ type Props = React.PropsWithChildren<{
 export const Titled = ({ title, ...otherProps }: Props) => {
   return (
     <TitledContext.Consumer>
-      {value => (
+      {(value) => (
         <TitledProvider
           title={typeof title === 'string' ? () => title : title}
           {...otherProps}

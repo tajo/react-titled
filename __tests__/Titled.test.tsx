@@ -21,7 +21,7 @@ test('should output single title', () => {
 test('should override change handler', () => {
   let titleToSet = '';
   render(
-    <Titled title={() => 'Foo'} onChange={title => (titleToSet = title)}>
+    <Titled title={() => 'Foo'} onChange={(title) => (titleToSet = title)}>
       Child
     </Titled>
   );
@@ -32,8 +32,8 @@ test('should output nested title', () => {
   const handleChange = vi.fn();
   render(
     <Titled title={() => 'A'} onChange={handleChange}>
-      <Titled title={title => `B | ${title}`}>
-        <Titled title={title => `C | ${title}`}>Child</Titled>
+      <Titled title={(title) => `B | ${title}`}>
+        <Titled title={(title) => `C | ${title}`}>Child</Titled>
       </Titled>
     </Titled>
   );
@@ -45,7 +45,7 @@ test('should renrender nested title', () => {
   const handleChange = vi.fn();
   render(
     <Titled title={() => 'A'} onChange={handleChange}>
-      <Titled title={title => `B | ${title}`}>Child</Titled>
+      <Titled title={(title) => `B | ${title}`}>Child</Titled>
     </Titled>
   );
   expect(handleChange).toHaveBeenCalledTimes(1);
@@ -68,7 +68,7 @@ test('should handle nested string literal title', () => {
   render(
     <Titled title={() => 'A'} onChange={handleChange}>
       <Titled title={'B'}>
-        <Titled title={title => `C | ${title}`}>Child</Titled>
+        <Titled title={(title) => `C | ${title}`}>Child</Titled>
       </Titled>
     </Titled>
   );
