@@ -41,7 +41,7 @@ test('should output nested title', () => {
   expect(handleChange.mock.calls[0][0]).toBe('C | B | A');
 });
 
-test('should renrender nested title', () => {
+test('should rerender nested title', () => {
   const handleChange = vi.fn();
   render(
     <Titled title={() => 'A'} onChange={handleChange}>
