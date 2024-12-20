@@ -44,6 +44,7 @@
     "react-title",
     "nested"
   ],
+  "dependencies": {},
   "devDependencies": {
     "@testing-library/react": "^13.4.0",
     "@types/react": "^19.0.2",
